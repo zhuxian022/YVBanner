@@ -8,7 +8,7 @@
 
 #import "YVBanner.h"
 
-#import <UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
 
 #define YVBannerHeight self.frame.size.height
 #define YVBannerWidth self.frame.size.width
