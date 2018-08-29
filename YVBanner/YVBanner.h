@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "iCarousel.h"
+#import <iCarousel/iCarousel.h>
 
 typedef enum : NSUInteger {
     YVIndicatorTypeNone,
