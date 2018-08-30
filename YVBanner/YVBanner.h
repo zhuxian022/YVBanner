@@ -11,19 +11,19 @@
 #import <iCarousel/iCarousel.h>
 
 typedef enum : NSUInteger {
-    YVIndicatorTypeNone,
-    YVIndicatorTypeLabel,
-    YVIndicatorTypePageControl,
+    YVIndicatorTypeNone = 0,
+    YVIndicatorTypeLabel = 1,
+    YVIndicatorTypePageControl = 2,
 } YVIndicatorType;
 
 typedef enum : NSUInteger {
-    YVIndicatorPositionLeftUp,
-    YVIndicatorPositionCenterUp,
-    YVIndicatorPositionRightUp,
-    YVIndicatorPositionCenter,
-    YVIndicatorPositionLeftDown,
-    YVIndicatorPositionCenterDown,
-    YVIndicatorPositionRightDown,
+    YVIndicatorPositionLeftUp = 0,
+    YVIndicatorPositionCenterUp = 1,
+    YVIndicatorPositionRightUp = 2,
+    YVIndicatorPositionCenter = 3,
+    YVIndicatorPositionLeftDown = 4,
+    YVIndicatorPositionCenterDown = 5,
+    YVIndicatorPositionRightDown = 6,
 } YVIndicatorPosition;
 
 typedef void(^YVClickBanner)(NSInteger index);
@@ -67,9 +67,9 @@ typedef void(^YVClickBanner)(NSInteger index);
 @property (nonatomic ,assign) CGFloat indicatorHorWidth;
 
 /*
- **是否循环
+ **是否循环,默认YES
  */
-@property (nonatomic ,assign) BOOL wrap;
+@property (nonatomic ,readonly ,assign) BOOL wrap;
 
 /*
  **当前index
