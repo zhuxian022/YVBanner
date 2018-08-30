@@ -330,19 +330,28 @@
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
     switch (option) {
-        case iCarouselOptionWrap:
+//        case iCarouselOptionWrap:
+//        {
+//            if (_wrap && _images.count-1) {
+//                return 1;
+//            }
+//            else{
+//                return 0;
+//            }
+//        }
+//            break;
+            
+        case iCarouselOptionVisibleItems:
         {
-            if (_wrap && _images.count-1) {
-                return 1;
-            }
-            else{
-                return 0;
-            }
+            return 2;
         }
+            break;
+            
         default:
         {
             return value;
         }
+            break;
     }
 }
 
