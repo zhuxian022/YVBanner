@@ -1,0 +1,24 @@
+//
+//  YVBannerDemo.pch
+//  YVBannerDemo
+//
+//  Created by ale tan on 2018/8/30.
+//  Copyright © 2018年 YiVon. All rights reserved.
+//
+
+#ifndef YVBannerDemo_pch
+#define YVBannerDemo_pch
+
+#define Navigation_Height (isDeviceIphoneX?88:64)
+#define TabBar_Height (isDeviceIphoneX?83:49)
+#define TabBarBottom_Height (isDeviceIphoneX?34:0)
+#define Status_Height (isDeviceIphoneX?44:20)
+
+#define isDeviceIphoneX CGSizeEqualToSize([UIScreen mainScreen].currentMode.size, CGSizeMake(1125, 2436))
+
+#define IPHONE_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define IPHONE_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+
+#endif /* YVBannerDemo_pch */

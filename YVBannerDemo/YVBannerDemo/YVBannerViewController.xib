@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YVBannerViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlL-p2-bsP">
+                    <rect key="frame" x="0.0" y="300" width="375" height="367"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTb-Y1-DDY">
+                            <rect key="frame" x="12" y="12" width="110" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="6eD-bg-bBU"/>
+                                <constraint firstAttribute="height" constant="35" id="A65-jW-uuH"/>
+                            </constraints>
+                            <state key="normal" title="设置图片列表1"/>
+                            <connections>
+                                <action selector="setImageListFirst:" destination="-1" eventType="touchUpInside" id="FE7-ff-93b"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXd-IT-K2c">
+                            <rect key="frame" x="253" y="12" width="110" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="CMu-47-cUL"/>
+                                <constraint firstAttribute="height" constant="35" id="dsO-tT-Knp"/>
+                            </constraints>
+                            <state key="normal" title="设置图片列表2"/>
+                            <connections>
+                                <action selector="setImageListSecond:" destination="-1" eventType="touchUpInside" id="faG-lh-cuX"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ip3-en-mD1">
+                            <rect key="frame" x="12" y="59" width="169.5" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="pIN-FT-Auh"/>
+                            </constraints>
+                            <state key="normal" title="YVIndicatorTypeNone"/>
+                            <connections>
+                                <action selector="setIndicatorType:" destination="-1" eventType="touchUpInside" id="ycV-1G-Lob"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0q-6x-6nh">
+                            <rect key="frame" x="193.5" y="59" width="169.5" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="qoD-ia-UKE"/>
+                            </constraints>
+                            <state key="normal" title="YVIndicatorPositionRightDown"/>
+                            <connections>
+                                <action selector="setIndicatorPosition:" destination="-1" eventType="touchUpInside" id="nJ0-MP-FFF"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="fXd-IT-K2c" secondAttribute="trailing" constant="12" id="80S-UH-KNW"/>
+                        <constraint firstItem="ZTb-Y1-DDY" firstAttribute="top" secondItem="IlL-p2-bsP" secondAttribute="top" constant="12" id="8xC-xO-suz"/>
+                        <constraint firstItem="ip3-en-mD1" firstAttribute="leading" secondItem="ZTb-Y1-DDY" secondAttribute="leading" id="Jz1-nP-mqO"/>
+                        <constraint firstItem="ip3-en-mD1" firstAttribute="width" secondItem="q0q-6x-6nh" secondAttribute="width" id="K60-pY-O4J"/>
+                        <constraint firstItem="fXd-IT-K2c" firstAttribute="top" secondItem="IlL-p2-bsP" secondAttribute="top" constant="12" id="LNC-CD-85j"/>
+                        <constraint firstItem="ip3-en-mD1" firstAttribute="top" secondItem="ZTb-Y1-DDY" secondAttribute="bottom" constant="12" id="Q6v-wg-QoG"/>
+                        <constraint firstItem="q0q-6x-6nh" firstAttribute="trailing" secondItem="fXd-IT-K2c" secondAttribute="trailing" id="dOW-8l-Gaq"/>
+                        <constraint firstItem="ZTb-Y1-DDY" firstAttribute="leading" secondItem="IlL-p2-bsP" secondAttribute="leading" constant="12" id="kyd-QY-KFQ"/>
+                        <constraint firstItem="q0q-6x-6nh" firstAttribute="centerY" secondItem="ip3-en-mD1" secondAttribute="centerY" id="vbP-cb-Ayo"/>
+                        <constraint firstItem="q0q-6x-6nh" firstAttribute="leading" secondItem="ip3-en-mD1" secondAttribute="trailing" constant="12" id="x5m-77-wg1"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="IlL-p2-bsP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LEC-m2-Egq"/>
+                <constraint firstAttribute="trailing" secondItem="IlL-p2-bsP" secondAttribute="trailing" id="Vt7-fv-jP5"/>
+                <constraint firstAttribute="bottom" secondItem="IlL-p2-bsP" secondAttribute="bottom" id="a38-6E-1To"/>
+                <constraint firstItem="IlL-p2-bsP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="300" id="hed-n4-H5p"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

@@ -21,16 +21,20 @@
 
 @implementation YVBanner
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self initDatas];
+    }
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _indicatorType = YVIndicatorTypeNone;
-        _indicatorPosition = YVIndicatorPositionRightDown;
-        _timeInverval = 0.f;
-        
-        _indicatorHorWidth = 20;
-        _indicatorVerHeight = 0;
+        [self initDatas];
         
         [self addSubview:self.carousel];
         
@@ -39,12 +43,22 @@
     return self;
 }
 
+- (void)initDatas{
+    _indicatorType = YVIndicatorTypeNone;
+    _indicatorPosition = YVIndicatorPositionRightDown;
+    _timeInverval = 0.f;
+    _wrap = YES;
+    
+    _indicatorHorWidth = 20;
+    _indicatorVerHeight = 0;
+}
+
 #pragma mark -Setter-
 //更新frame
-- (void)updateFrame:(CGRect)frame{
-    self.frame = frame;
+- (void)setFrame:(CGRect)frame{
+    [super setFrame:frame];
     
-    _carousel.frame = self.bounds;
+    self.carousel.frame = self.bounds;
     [self setIndicatorFrame];
 }
 
@@ -62,6 +76,9 @@
     _images = images;
     
     [_carousel reloadData];
+    _currentIndex = 0;
+    [_carousel scrollToItemAtIndex:0 animated:NO];
+    
     if (_images.count-1) {
         _carousel.scrollEnabled = YES;
     }
@@ -70,7 +87,7 @@
     }
     
     [self setIndicatorFrame];
-    
+
     [self startCountDown];
 }
 
@@ -79,14 +96,24 @@
     
     switch (indicatorType) {
         case YVIndicatorTypeLabel:
+        {
             [self addSubview:self.indicatorLabel];
+            [_pageControl removeFromSuperview];
+        }
             break;
             
         case YVIndicatorTypePageControl:
+        {
             [self addSubview:self.pageControl];
+            [_indicatorLabel removeFromSuperview];
+        }
             break;
             
         default:
+        {
+            [_pageControl removeFromSuperview];
+            [_indicatorLabel removeFromSuperview];
+        }
             break;
     }
 }
@@ -95,6 +122,15 @@
     _indicatorPosition = indicatorPosition;
     
     [self setIndicatorFrame];
+}
+
+- (void)setCurrentIndex:(NSInteger)currentIndex{
+    if (currentIndex < _images.count) {
+        _currentIndex = currentIndex;
+        
+        [_carousel scrollToItemAtIndex:currentIndex animated:YES];
+        [self setIndicatorFrame];
+    }
 }
 
 #pragma mark -UI-
@@ -135,8 +171,8 @@
     if (!_indicatorLabel) {
         _indicatorLabel = [[UILabel alloc]init];
         
-        _indicatorLabel.textColor = [UIColor lightGrayColor];
-        _indicatorLabel.font = [UIFont systemFontOfSize:12];
+        _indicatorLabel.textColor = [UIColor whiteColor];
+        _indicatorLabel.font = [UIFont systemFontOfSize:14];
         
         [self setIndicatorFrame];
     }
@@ -146,8 +182,9 @@
 
 //改变指示器位置
 - (void)setIndicatorFrame{
-    _indicatorLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_currentIndex,(unsigned long)(_images?_images.count:0)];
+    _indicatorLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_currentIndex+1,(unsigned long)(_images?_images.count:0)];
     _pageControl.numberOfPages = _images?_images.count:0;
+    _pageControl.currentPage = _currentIndex;
     
     switch (_indicatorPosition) {
         case YVIndicatorPositionLeftUp:
@@ -248,9 +285,11 @@
 
 //重新开始计时
 - (void)startCountDown{
-    [_timer invalidate];
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:_timeInverval target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:YES];
+    if (_timeInverval) {
+        [_timer invalidate];
+        
+        _timer = [NSTimer scheduledTimerWithTimeInterval:_timeInverval target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:YES];
+    }
 }
 
 - (void)scrollToNextPage{
@@ -321,7 +360,7 @@
         _pageControl.currentPage = _currentIndex;
     }
     if (_indicatorLabel) {
-        _indicatorLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_currentIndex,(unsigned long)(_images?_images.count:0)]
+        _indicatorLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_currentIndex+1,(unsigned long)(_images?_images.count:0)]
         ;
     }
 }

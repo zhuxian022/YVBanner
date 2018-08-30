@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "YVBannerViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    UINavigationController *navigation = [[UINavigationController alloc]initWithRootViewController:[[YVBannerViewController alloc]initWithNibName:@"YVBannerViewController" bundle:nil]];
+    self.window.rootViewController = navigation;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
