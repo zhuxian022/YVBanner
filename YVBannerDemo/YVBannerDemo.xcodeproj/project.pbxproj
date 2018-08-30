@@ -13,7 +13,6 @@
 		9A7BDD792136CA3400716F3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDD782136CA3400716F3B /* main.m */; };
 		9A7BDD832136CA3400716F3B /* YVBannerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDD822136CA3400716F3B /* YVBannerDemoTests.m */; };
 		9A7BDD8E2136CA3400716F3B /* YVBannerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDD8D2136CA3400716F3B /* YVBannerDemoUITests.m */; };
-		9A7BDDA52136CBA700716F3B /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDA42136CBA700716F3B /* iCarousel.m */; };
 		9A7BDDA92136E8B400716F3B /* YVBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDA82136E8B400716F3B /* YVBanner.m */; };
 		9A7BDDC82136EA5800716F3B /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDAD2136EA5800716F3B /* SDWebImageManager.m */; };
 		9A7BDDC92136EA5800716F3B /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDAE2136EA5800716F3B /* SDWebImageDecoder.m */; };
@@ -31,6 +30,7 @@
 		9A7BDDD52136EA5800716F3B /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDC62136EA5800716F3B /* UIButton+WebCache.m */; };
 		E276AE6B2137E2D7002041E2 /* YVOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E276AE692137E2D7002041E2 /* YVOptionsViewController.m */; };
 		E276AE6C2137E2D7002041E2 /* YVOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E276AE6A2137E2D7002041E2 /* YVOptionsViewController.xib */; };
+		E276AE722137F805002041E2 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = E276AE702137F805002041E2 /* iCarousel.m */; };
 		E296606A2137DCE30091A86C /* YVBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29660682137DCE30091A86C /* YVBannerViewController.m */; };
 		E296606B2137DCE30091A86C /* YVBannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29660692137DCE30091A86C /* YVBannerViewController.xib */; };
 		E2FBE2B92137CDBF00ADD28F /* timg-4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E2FBE2B52137CDBF00ADD28F /* timg-4.jpeg */; };
@@ -70,8 +70,6 @@
 		9A7BDD892136CA3400716F3B /* YVBannerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YVBannerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7BDD8D2136CA3400716F3B /* YVBannerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YVBannerDemoUITests.m; sourceTree = "<group>"; };
 		9A7BDD8F2136CA3400716F3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9A7BDDA32136CBA700716F3B /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
-		9A7BDDA42136CBA700716F3B /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		9A7BDDA72136E8B400716F3B /* YVBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YVBanner.h; sourceTree = "<group>"; };
 		9A7BDDA82136E8B400716F3B /* YVBanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YVBanner.m; sourceTree = "<group>"; };
 		9A7BDDAB2136EA5800716F3B /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
@@ -107,6 +105,8 @@
 		E276AE692137E2D7002041E2 /* YVOptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YVOptionsViewController.m; sourceTree = "<group>"; };
 		E276AE6A2137E2D7002041E2 /* YVOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YVOptionsViewController.xib; sourceTree = "<group>"; };
 		E276AE6F2137E4FD002041E2 /* YVBannerDemo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YVBannerDemo.pch; sourceTree = "<group>"; };
+		E276AE702137F805002041E2 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		E276AE712137F805002041E2 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		E29660672137DCE30091A86C /* YVBannerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YVBannerViewController.h; sourceTree = "<group>"; };
 		E29660682137DCE30091A86C /* YVBannerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YVBannerViewController.m; sourceTree = "<group>"; };
 		E29660692137DCE30091A86C /* YVBannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YVBannerViewController.xib; sourceTree = "<group>"; };
@@ -214,8 +214,8 @@
 		9A7BDDA22136CB6C00716F3B /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
-				9A7BDDA32136CBA700716F3B /* iCarousel.h */,
-				9A7BDDA42136CBA700716F3B /* iCarousel.m */,
+				E276AE712137F805002041E2 /* iCarousel.h */,
+				E276AE702137F805002041E2 /* iCarousel.m */,
 			);
 			path = iCarousel;
 			sourceTree = "<group>";
@@ -412,13 +412,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A7BDDC92136EA5800716F3B /* SDWebImageDecoder.m in Sources */,
+				E276AE722137F805002041E2 /* iCarousel.m in Sources */,
 				9A7BDDCE2136EA5800716F3B /* SDWebImageCompat.m in Sources */,
 				9A7BDDCB2136EA5800716F3B /* SDWebImageDownloader.m in Sources */,
 				9A7BDDCF2136EA5800716F3B /* SDWebImagePrefetcher.m in Sources */,
 				9A7BDDD32136EA5800716F3B /* UIImageView+WebCache.m in Sources */,
 				9A7BDDCA2136EA5800716F3B /* UIImageView+HighlightedWebCache.m in Sources */,
 				9A7BDDD12136EA5800716F3B /* SDWebImageDownloaderOperation.m in Sources */,
-				9A7BDDA52136CBA700716F3B /* iCarousel.m in Sources */,
 				E296606A2137DCE30091A86C /* YVBannerViewController.m in Sources */,
 				9A7BDD792136CA3400716F3B /* main.m in Sources */,
 				E276AE6B2137E2D7002041E2 /* YVOptionsViewController.m in Sources */,
