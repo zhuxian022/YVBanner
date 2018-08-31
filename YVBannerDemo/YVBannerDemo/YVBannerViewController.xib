@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YVBannerViewController">
             <connections>
+                <outlet property="pageTextField" destination="HH2-C7-thi" id="wB6-BE-5bl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -64,19 +65,61 @@
                                 <action selector="setIndicatorPosition:" destination="-1" eventType="touchUpInside" id="nJ0-MP-FFF"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="滚动到：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elV-Jf-Kog">
+                            <rect key="frame" x="12" y="106" width="69.5" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HH2-C7-thi">
+                            <rect key="frame" x="86.5" y="101.5" width="60" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="lcf-rs-Nsl"/>
+                                <constraint firstAttribute="height" constant="30" id="udd-lQ-PHm"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6PM-U6-rGM">
+                            <rect key="frame" x="158.5" y="101" width="31" height="30"/>
+                            <state key="normal" title="跳转"/>
+                            <connections>
+                                <action selector="jumpToPage:" destination="-1" eventType="touchUpInside" id="Oig-40-EmI"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NF-6m-cfW">
+                            <rect key="frame" x="280" y="99.5" width="83" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="循环：NO">
+                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="selected" title="循环：YES"/>
+                            <connections>
+                                <action selector="setWrap:" destination="-1" eventType="touchUpInside" id="rBo-cq-A97"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="9NF-6m-cfW" firstAttribute="trailing" secondItem="q0q-6x-6nh" secondAttribute="trailing" id="638-Zl-GeJ"/>
                         <constraint firstAttribute="trailing" secondItem="fXd-IT-K2c" secondAttribute="trailing" constant="12" id="80S-UH-KNW"/>
                         <constraint firstItem="ZTb-Y1-DDY" firstAttribute="top" secondItem="IlL-p2-bsP" secondAttribute="top" constant="12" id="8xC-xO-suz"/>
+                        <constraint firstItem="6PM-U6-rGM" firstAttribute="leading" secondItem="HH2-C7-thi" secondAttribute="trailing" constant="12" id="BIb-xQ-Tyo"/>
+                        <constraint firstItem="HH2-C7-thi" firstAttribute="centerY" secondItem="elV-Jf-Kog" secondAttribute="centerY" id="FJT-zX-Afi"/>
                         <constraint firstItem="ip3-en-mD1" firstAttribute="leading" secondItem="ZTb-Y1-DDY" secondAttribute="leading" id="Jz1-nP-mqO"/>
                         <constraint firstItem="ip3-en-mD1" firstAttribute="width" secondItem="q0q-6x-6nh" secondAttribute="width" id="K60-pY-O4J"/>
                         <constraint firstItem="fXd-IT-K2c" firstAttribute="top" secondItem="IlL-p2-bsP" secondAttribute="top" constant="12" id="LNC-CD-85j"/>
                         <constraint firstItem="ip3-en-mD1" firstAttribute="top" secondItem="ZTb-Y1-DDY" secondAttribute="bottom" constant="12" id="Q6v-wg-QoG"/>
                         <constraint firstItem="q0q-6x-6nh" firstAttribute="trailing" secondItem="fXd-IT-K2c" secondAttribute="trailing" id="dOW-8l-Gaq"/>
+                        <constraint firstItem="elV-Jf-Kog" firstAttribute="top" secondItem="ip3-en-mD1" secondAttribute="bottom" constant="12" id="gb9-3G-MAE"/>
+                        <constraint firstItem="6PM-U6-rGM" firstAttribute="centerY" secondItem="HH2-C7-thi" secondAttribute="centerY" id="hL5-7d-IAF"/>
                         <constraint firstItem="ZTb-Y1-DDY" firstAttribute="leading" secondItem="IlL-p2-bsP" secondAttribute="leading" constant="12" id="kyd-QY-KFQ"/>
+                        <constraint firstItem="elV-Jf-Kog" firstAttribute="leading" secondItem="ip3-en-mD1" secondAttribute="leading" id="oY6-Ku-E5g"/>
                         <constraint firstItem="q0q-6x-6nh" firstAttribute="centerY" secondItem="ip3-en-mD1" secondAttribute="centerY" id="vbP-cb-Ayo"/>
                         <constraint firstItem="q0q-6x-6nh" firstAttribute="leading" secondItem="ip3-en-mD1" secondAttribute="trailing" constant="12" id="x5m-77-wg1"/>
+                        <constraint firstItem="9NF-6m-cfW" firstAttribute="centerY" secondItem="6PM-U6-rGM" secondAttribute="centerY" id="y6Q-YY-1qH"/>
+                        <constraint firstItem="HH2-C7-thi" firstAttribute="leading" secondItem="elV-Jf-Kog" secondAttribute="trailing" constant="5" id="zHX-9f-kVr"/>
                     </constraints>
                 </view>
             </subviews>
@@ -87,6 +130,7 @@
                 <constraint firstAttribute="bottom" secondItem="IlL-p2-bsP" secondAttribute="bottom" id="a38-6E-1To"/>
                 <constraint firstItem="IlL-p2-bsP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="300" id="hed-n4-H5p"/>
             </constraints>
+            <point key="canvasLocation" x="42.5" y="148.5"/>
         </view>
     </objects>
 </document>

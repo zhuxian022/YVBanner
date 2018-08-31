@@ -27,6 +27,7 @@ typedef enum : NSUInteger {
 } YVIndicatorPosition;
 
 typedef void(^YVClickBanner)(NSInteger index);
+typedef void(^YVScrollBanner)(NSInteger index);
 
 @interface YVBanner : UIView
 
@@ -69,7 +70,7 @@ typedef void(^YVClickBanner)(NSInteger index);
 /*
  **是否循环,默认YES
  */
-@property (nonatomic ,readonly ,assign) BOOL wrap;
+@property (nonatomic ,assign) BOOL wrap;
 
 /*
  **当前index
@@ -80,6 +81,11 @@ typedef void(^YVClickBanner)(NSInteger index);
  **点击block
  */
 @property (nonatomic ,strong) YVClickBanner clickBannerBlock;
+
+/*
+ **滚动block
+ */
+@property (nonatomic ,strong) YVScrollBanner scrollBannerBlock;
 
 #pragma 数据
 //数据

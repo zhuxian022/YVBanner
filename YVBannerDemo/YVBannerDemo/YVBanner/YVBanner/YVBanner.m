@@ -144,7 +144,7 @@
         _carousel.type = iCarouselTypeLinear;
         _carousel.vertical = NO;
         _carousel.pagingEnabled = YES;
-        _carousel.bounceDistance = 0.f;
+        _carousel.bounceDistance = 0.001f;
     }
     return _carousel;
 }
@@ -307,6 +307,10 @@
     return _images.count;
 }
 
+- (CGFloat)carouselItemWidth:(iCarousel *)carousel{
+    return CGRectGetWidth(carousel.frame);
+}
+
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
     UIImageView *imageView = (UIImageView *)view;
     
@@ -330,23 +334,17 @@
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
     switch (option) {
-//        case iCarouselOptionWrap:
-//        {
-//            if (_wrap && _images.count-1) {
-//                return 1;
-//            }
-//            else{
-//                return 0;
-//            }
-//        }
-//            break;
-            
-        case iCarouselOptionVisibleItems:
+        case iCarouselOptionWrap:
         {
-            return 2;
+            if (_wrap && _images.count-1) {
+                return 1;
+            }
+            else{
+                return 0;
+            }
         }
             break;
-            
+
         default:
         {
             return value;
@@ -371,6 +369,9 @@
     if (_indicatorLabel) {
         _indicatorLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_currentIndex+1,(unsigned long)(_images?_images.count:0)]
         ;
+    }
+    if (_scrollBannerBlock) {
+        _scrollBannerBlock(_currentIndex);
     }
 }
 
