@@ -64,6 +64,7 @@
 
 - (void)setTimeInverval:(NSTimeInterval)timeInverval{
     _timeInverval = timeInverval;
+    [self startCountDown];
 }
 
 - (void)setWrap:(BOOL)wrap{
@@ -285,15 +286,15 @@
 
 //重新开始计时
 - (void)startCountDown{
+    [_timer invalidate];
     if (_timeInverval) {
-        [_timer invalidate];
-        
-        _timer = [NSTimer scheduledTimerWithTimeInterval:_timeInverval target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:_timeInverval/2.0 target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:NO];
     }
 }
 
 - (void)scrollToNextPage{
     [_carousel scrollToItemAtIndex:_currentIndex++ animated:YES];
+    [self startCountDown];
 }
 
 #pragma mark -UIPageControl-
@@ -351,14 +352,6 @@
         }
             break;
     }
-}
-
-- (void)carouselWillBeginDragging:(iCarousel *)carousel{
-    [_timer invalidate];
-}
-
-- (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel{
-    [self startCountDown];
 }
 
 - (void)carouselDidScroll:(iCarousel *)carousel{
