@@ -14,6 +14,7 @@
 
 @property (nonatomic ,strong) YVBanner *bannerView;
 @property (weak, nonatomic) IBOutlet UITextField *pageTextField;
+@property (strong, nonatomic) IBOutlet UITextField *timeTF;
 
 @end
 
@@ -34,7 +35,7 @@
 #pragma mark -YVBanner-
 - (YVBanner *)bannerView{
     if (!_bannerView) {
-        _bannerView = [[YVBanner alloc]initWithFrame:CGRectMake(0, Navigation_Height, IPHONE_WIDTH, 300-Navigation_Height)];
+        _bannerView = [[YVBanner alloc]initWithFrame:CGRectMake(0, Navigation_Height, IPHONE_WIDTH, 290-Navigation_Height)];
         
         WS(weakSelf);
         _bannerView.clickBannerBlock = ^(NSInteger index) {
@@ -42,7 +43,6 @@
             NSLog(@"clickImageAtIndex:%ld",(long)index);
         };
         _bannerView.scrollBannerBlock = ^(NSInteger index) {
-            [weakSelf.view endEditing:YES];
             weakSelf.pageTextField.text = [NSString stringWithFormat:@"%ld",(long)index+1];
         };
         [self setImageListFirst:nil];
@@ -114,6 +114,13 @@
     [self.view endEditing:YES];
     sender.selected = !sender.selected;
     _bannerView.wrap = sender.selected;
+}
+
+//设置自动滚动时间
+- (IBAction)setAutoScrollTime:(id)sender {
+    [self.view endEditing:YES];
+    CGFloat time = [_timeTF.text floatValue];
+    _bannerView.timeInverval = time;
 }
 
 @end
