@@ -23,6 +23,7 @@ _bannerView = [[YVBanner alloc]initWithFrame:CGRectMake(0, Navigation_Height, IP
 [self.view addSubview:_bannerView];
 ```
 #### set images
+### images's object could be  UIImage、NSString(imageLink)、NSUrl
 ```Object-C
 NSArray *array =@[[UIImage imageNamed:@"timg-1.jpeg"],@"https://timgsa.baidu.com/timg?image&src=http%bb60.jpg",[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image2f3f36bfef3dd8.jpg"],[UIImage imageNamed:@"timg-2.jpeg"]];
 _bannerView.images = array;
