@@ -39,6 +39,11 @@ _bannerView.wrap = YES;
 _bannerView.currentIndex = 3;
 ```
 
+#### set AutoScrollTime
+```Object-C
+_bannerView.timeInverval = 2.0f;
+```
+
 ## Change Page && Click Page
 ```Object-C
 _bannerView.clickBannerBlock = ^(NSInteger index) {
