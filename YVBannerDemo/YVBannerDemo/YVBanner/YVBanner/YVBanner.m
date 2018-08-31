@@ -13,7 +13,7 @@
 #define YVBannerHeight self.frame.size.height
 #define YVBannerWidth self.frame.size.width
 
-@interface YVBanner ()<iCarouselDataSource,iCarouselDelegate>
+@interface YVBanner ()
 
 @property (nonatomic ,strong) NSTimer *timer;
 

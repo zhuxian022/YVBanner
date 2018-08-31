@@ -37,7 +37,7 @@
 #pragma mark -YVBanner-
 - (YVBanner *)bannerView{
     if (!_bannerView) {
-        _bannerView = [[YVBanner alloc]initWithFrame:CGRectMake(0, Navigation_Height, IPHONE_WIDTH, 290-Navigation_Height)];
+        _bannerView = [[YVBanner alloc]initWithFrame:CGRectMake(0, Navigation_Height, IPHONE_WIDTH, 250-Navigation_Height)];
         
         WS(weakSelf);
         _bannerView.clickBannerBlock = ^(NSInteger index) {
@@ -47,9 +47,6 @@
         _bannerView.scrollBannerBlock = ^(NSInteger index) {
             weakSelf.pageTextField.text = [NSString stringWithFormat:@"%ld",(long)index+1];
         };
-        
-        _bannerView.carousel.dataSource = self;
-        _bannerView.carousel.delegate = self;
         
         [self setImageListFirst:nil];
     }
@@ -66,7 +63,7 @@
     UIImageView *imageView = (UIImageView *)view;
     
     if (!imageView) {
-        imageView = [[UIImageView alloc]initWithFrame:carousel.bounds];
+        imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(carousel.frame)/6*4, CGRectGetHeight(carousel.frame))];
     }
     
     id obj = _bannerView.images[index];
@@ -96,6 +93,12 @@
         }
             break;
             
+        case iCarouselOptionVisibleItems:
+        {
+            return 3;
+        }
+            break;
+            
         default:
         {
             return value;
@@ -110,6 +113,10 @@
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
     
+}
+
+- (CATransform3D)carousel:(iCarousel *)carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform{
+    return CATransform3DIdentity;
 }
 
 #pragma mark -Events
@@ -182,6 +189,21 @@
     [self.view endEditing:YES];
     CGFloat time = [_timeTF.text floatValue];
     _bannerView.timeInverval = time;
+}
+
+//切换滚动样式
+- (IBAction)changeScrollType:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        _bannerView.carousel.dataSource = self;
+        _bannerView.carousel.delegate = self;
+        _bannerView.carousel.type = iCarouselTypeLinear;
+    }
+    else{
+        _bannerView.carousel.dataSource = _bannerView;
+        _bannerView.carousel.delegate = _bannerView;
+        _bannerView.carousel.type = iCarouselTypeLinear;
+    }
 }
 
 @end

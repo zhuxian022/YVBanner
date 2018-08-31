@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlL-p2-bsP">
-                    <rect key="frame" x="0.0" y="290" width="375" height="377"/>
+                    <rect key="frame" x="0.0" y="250" width="375" height="417"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTb-Y1-DDY">
                             <rect key="frame" x="12" y="12" width="110" height="35"/>
@@ -123,6 +123,14 @@
                                 <action selector="setAutoScrollTime:" destination="-1" eventType="touchUpInside" id="M74-ng-2j1"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5U-nk-ckt">
+                            <rect key="frame" x="12" y="172" width="199" height="30"/>
+                            <state key="normal" title="切换滚动样式：默认滚动样式"/>
+                            <state key="selected" title="自定义滚动样式（模仿Mac版QQ音乐）"/>
+                            <connections>
+                                <action selector="changeScrollType:" destination="-1" eventType="touchUpInside" id="eRD-8j-33N"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
@@ -139,9 +147,11 @@
                         <constraint firstItem="ey9-h9-ItJ" firstAttribute="leading" secondItem="8YV-CT-UCc" secondAttribute="trailing" constant="12" id="Ny6-oH-CFP"/>
                         <constraint firstItem="ip3-en-mD1" firstAttribute="top" secondItem="ZTb-Y1-DDY" secondAttribute="bottom" constant="12" id="Q6v-wg-QoG"/>
                         <constraint firstItem="9NY-rI-NKc" firstAttribute="leading" secondItem="elV-Jf-Kog" secondAttribute="leading" id="RVX-9u-quk"/>
+                        <constraint firstItem="t5U-nk-ckt" firstAttribute="leading" secondItem="9NY-rI-NKc" secondAttribute="leading" id="XwS-bJ-FHE"/>
                         <constraint firstItem="q0q-6x-6nh" firstAttribute="trailing" secondItem="fXd-IT-K2c" secondAttribute="trailing" id="dOW-8l-Gaq"/>
                         <constraint firstItem="elV-Jf-Kog" firstAttribute="top" secondItem="ip3-en-mD1" secondAttribute="bottom" constant="12" id="gb9-3G-MAE"/>
                         <constraint firstItem="6PM-U6-rGM" firstAttribute="centerY" secondItem="HH2-C7-thi" secondAttribute="centerY" id="hL5-7d-IAF"/>
+                        <constraint firstItem="t5U-nk-ckt" firstAttribute="top" secondItem="9NY-rI-NKc" secondAttribute="bottom" constant="12" id="hbJ-Tz-9xQ"/>
                         <constraint firstItem="ZTb-Y1-DDY" firstAttribute="leading" secondItem="IlL-p2-bsP" secondAttribute="leading" constant="12" id="kyd-QY-KFQ"/>
                         <constraint firstItem="8YV-CT-UCc" firstAttribute="centerY" secondItem="9NY-rI-NKc" secondAttribute="centerY" id="lzy-7B-ety"/>
                         <constraint firstItem="elV-Jf-Kog" firstAttribute="leading" secondItem="ip3-en-mD1" secondAttribute="leading" id="oY6-Ku-E5g"/>
@@ -158,7 +168,7 @@
                 <constraint firstItem="IlL-p2-bsP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LEC-m2-Egq"/>
                 <constraint firstAttribute="trailing" secondItem="IlL-p2-bsP" secondAttribute="trailing" id="Vt7-fv-jP5"/>
                 <constraint firstAttribute="bottom" secondItem="IlL-p2-bsP" secondAttribute="bottom" id="a38-6E-1To"/>
-                <constraint firstItem="IlL-p2-bsP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="290" id="hed-n4-H5p"/>
+                <constraint firstItem="IlL-p2-bsP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="250" id="hed-n4-H5p"/>
             </constraints>
             <point key="canvasLocation" x="42.5" y="148.5"/>
         </view>

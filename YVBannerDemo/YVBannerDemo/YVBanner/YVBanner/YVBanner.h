@@ -29,7 +29,7 @@ typedef enum : NSUInteger {
 typedef void(^YVClickBanner)(NSInteger index);
 typedef void(^YVScrollBanner)(NSInteger index);
 
-@interface YVBanner : UIView
+@interface YVBanner : UIView <iCarouselDataSource,iCarouselDelegate>
 
 #pragma UI控件
 //图片滚动器
