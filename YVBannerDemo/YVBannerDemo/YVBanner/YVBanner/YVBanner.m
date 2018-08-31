@@ -129,7 +129,9 @@
     if (currentIndex < _images.count) {
         _currentIndex = currentIndex;
         
-        [_carousel scrollToItemAtIndex:currentIndex animated:YES];
+        if (_carousel.dataSource == self) {
+            [_carousel scrollToItemAtIndex:currentIndex animated:YES];
+        }
         [self setIndicatorFrame];
     }
 }
@@ -306,10 +308,6 @@
 #pragma mark -iCarousel-
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel{
     return _images.count;
-}
-
-- (CGFloat)carouselItemWidth:(iCarousel *)carousel{
-    return CGRectGetWidth(carousel.frame);
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{

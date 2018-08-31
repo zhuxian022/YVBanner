@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "YVBanner"
   s.version      = "1.2"
-  s.summary      = "A Simple Banner"
+  s.summary      = "A Simple Banner Base On iCarousel"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?

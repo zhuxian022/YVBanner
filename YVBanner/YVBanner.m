@@ -129,7 +129,9 @@
     if (currentIndex < _images.count) {
         _currentIndex = currentIndex;
         
-        [_carousel scrollToItemAtIndex:currentIndex animated:YES];
+        if (_carousel.dataSource == self) {
+            [_carousel scrollToItemAtIndex:currentIndex animated:YES];
+        }
         [self setIndicatorFrame];
     }
 }

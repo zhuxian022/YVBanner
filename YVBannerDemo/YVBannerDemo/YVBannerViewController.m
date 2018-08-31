@@ -10,7 +10,9 @@
 #import "YVBanner.h"
 #import "YVOptionsViewController.h"
 
-@interface YVBannerViewController ()
+#import "UIImageView+WebCache.h"
+
+@interface YVBannerViewController ()<iCarouselDataSource,iCarouselDelegate>
 
 @property (nonatomic ,strong) YVBanner *bannerView;
 @property (weak, nonatomic) IBOutlet UITextField *pageTextField;
@@ -45,10 +47,69 @@
         _bannerView.scrollBannerBlock = ^(NSInteger index) {
             weakSelf.pageTextField.text = [NSString stringWithFormat:@"%ld",(long)index+1];
         };
+        
+        _bannerView.carousel.dataSource = self;
+        _bannerView.carousel.delegate = self;
+        
         [self setImageListFirst:nil];
     }
     
     return _bannerView;
+}
+
+#pragma mark -iCarousel-
+- (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel{
+    return _bannerView.images.count;
+}
+
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
+    UIImageView *imageView = (UIImageView *)view;
+    
+    if (!imageView) {
+        imageView = [[UIImageView alloc]initWithFrame:carousel.bounds];
+    }
+    
+    id obj = _bannerView.images[index];
+    if ([obj isKindOfClass:[UIImage class]]) {
+        imageView.image = obj;
+    }
+    else if ([obj isKindOfClass:[NSString class]] && [obj hasPrefix:@"http"]){
+        [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:nil];
+    }
+    else if ([obj isKindOfClass:[NSURL class]]){
+        [imageView sd_setImageWithURL:obj placeholderImage:nil];
+    }
+    
+    return imageView;
+}
+
+- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
+    switch (option) {
+        case iCarouselOptionWrap:
+        {
+            if (_bannerView.wrap && _bannerView.images.count-1) {
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+            break;
+            
+        default:
+        {
+            return value;
+        }
+            break;
+    }
+}
+
+- (void)carouselDidScroll:(iCarousel *)carousel{
+    _bannerView.currentIndex = carousel.currentItemIndex;
+}
+
+- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
+    
 }
 
 #pragma mark -Events
