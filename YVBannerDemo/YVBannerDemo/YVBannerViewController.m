@@ -188,7 +188,12 @@
     [self.view endEditing:YES];
     NSInteger index = [_pageTextField.text integerValue]-1;
     if (index>=0 && index<_bannerView.images.count) {
-        _bannerView.currentIndex = index;
+        if (_bannerView.carousel.dataSource == self) {
+            [_bannerView.carousel scrollToItemAtIndex:index animated:YES];
+        }
+        else{
+            _bannerView.currentIndex = index;
+        }
     }
 }
 
