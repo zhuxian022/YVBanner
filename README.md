@@ -14,8 +14,9 @@ pod 'YVBanner', '~> 1.3'
 
 ## Update 
 * #### 2018.08.29 First version   v1.0
-* #### 2018.08.31 bug fix version v1.1 
-* #### 2018.08.31 add AutoScroll version v1.2
+* #### 2018.08.31 bug fix v1.1 
+* #### 2018.08.31 add AutoScroll v1.2
+* #### 2018.09.03 support custom animation v1.2
 
 ## How To Use
 #### import "YVBanner.h"
