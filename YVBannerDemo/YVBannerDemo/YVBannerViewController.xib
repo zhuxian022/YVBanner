@@ -123,7 +123,7 @@
                                 <action selector="setAutoScrollTime:" destination="-1" eventType="touchUpInside" id="M74-ng-2j1"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5U-nk-ckt">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5U-nk-ckt">
                             <rect key="frame" x="12" y="172" width="296" height="30"/>
                             <state key="normal" title="切换滚动样式：默认滚动样式"/>
                             <state key="selected" title="模仿Mac版QQ音乐,其他效果请参考icarousel"/>
