@@ -64,6 +64,8 @@
     
     if (!imageView) {
         imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(carousel.frame)/6*4, CGRectGetHeight(carousel.frame))];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
     }
     
     id obj = _bannerView.images[index];
@@ -116,7 +118,20 @@
 }
 
 - (CATransform3D)carousel:(iCarousel *)carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform{
-    return CATransform3DIdentity;
+    CGSize itemSize = CGSizeMake(CGRectGetWidth(carousel.frame)/6*4, CGRectGetHeight(carousel.frame));
+    static CGFloat max_sacle = 1.0f;
+    static CGFloat min_scale = 0.7f;
+    if (offset <= 1 && offset >= -1) {
+        float tempScale = offset < 0 ? 1+offset : 1-offset;
+        float slope = (max_sacle - min_scale) / 1;
+        
+        CGFloat scale = min_scale + slope*tempScale;
+        transform = CATransform3DScale(transform, scale, scale, 1);
+    }else{
+        transform = CATransform3DScale(transform, min_scale, min_scale, 1);
+    }
+    
+    return CATransform3DTranslate(transform, offset * itemSize.width, 0.0, offset<0?offset:-offset);
 }
 
 #pragma mark -Events
@@ -197,7 +212,7 @@
     if (sender.selected) {
         _bannerView.carousel.dataSource = self;
         _bannerView.carousel.delegate = self;
-        _bannerView.carousel.type = iCarouselTypeLinear;
+        _bannerView.carousel.type = iCarouselTypeCustom;
     }
     else{
         _bannerView.carousel.dataSource = _bannerView;

@@ -2,6 +2,8 @@
 
 ![quickLook](https://github.com/zhuxian022/YVBanner/blob/master/view.gif?raw=true)
 
+![quickLook](https://github.com/zhuxian022/YVBanner/blob/master/customAnimation.gif?raw=true)
+
 ## Installation
 #### 1.cocoapod 
 ```Object-C
@@ -55,3 +57,14 @@ _bannerView.scrollBannerBlock = ^(NSInteger index) {
 NSLog(@"scrollToIndex:%ld",(long)index);
 };    
 ```
+
+## Custom Animation
+#### 1.set bannerView's carousel dataSource & delegate
+```Object-C
+_bannerView.carousel.dataSource = self;
+_bannerView.carousel.delegate = self;
+_bannerView.carousel.type = iCarouselTypeCustom;
+```
+#### 2.implement bannerView's carousel dataSource & delegate 
+[iCarousel](https://github.com/nicklockwood/iCarousel) 
+
