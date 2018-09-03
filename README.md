@@ -66,5 +66,5 @@ _bannerView.carousel.delegate = self;
 _bannerView.carousel.type = iCarouselTypeCustom;
 ```
 #### 2.implement bannerView's carousel dataSource & delegate 
-[iCarousel](https://github.com/nicklockwood/iCarousel) 
+[Please check iCarousel](https://github.com/nicklockwood/iCarousel) 
 
