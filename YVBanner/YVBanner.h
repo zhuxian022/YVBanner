@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <iCarousel/iCarousel.h>
+#import "iCarousel.h"
 
 typedef enum : NSUInteger {
     YVIndicatorTypeNone = 0,
@@ -28,8 +28,9 @@ typedef enum : NSUInteger {
 
 typedef void(^YVClickBanner)(NSInteger index);
 typedef void(^YVScrollBanner)(NSInteger index);
+typedef void(^YVSetImages)(UIImageView *imageView,NSInteger index);
 
-@interface YVBanner : UIView
+@interface YVBanner : UIView <iCarouselDataSource,iCarouselDelegate>
 
 #pragma UI控件
 //图片滚动器
@@ -88,7 +89,7 @@ typedef void(^YVScrollBanner)(NSInteger index);
 @property (nonatomic ,strong) YVScrollBanner scrollBannerBlock;
 
 #pragma 数据
-//数据
-@property (nonatomic ,strong) NSArray *images;
+//block设置images
+- (void)loadWithCount:(NSInteger)count SetImages:(YVSetImages)setImages;
 
 @end
