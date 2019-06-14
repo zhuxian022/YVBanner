@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "YVBanner"
-  s.version      = "1.3"
+  s.version      = "1.4"
   s.summary      = "A Simple Banner Base On iCarousel"
 
   # This description is used to generate tags and improve search results.
@@ -133,6 +133,6 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   s.dependency "iCarousel"
-  s.dependency "SDWebImage"
+#s.dependency "SDWebImage"
 
 end

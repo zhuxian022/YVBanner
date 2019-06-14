@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *pageTextField;
 @property (strong, nonatomic) IBOutlet UITextField *timeTF;
 
+@property (nonatomic ,assign) NSInteger imageListIndex;
+
 @end
 
 @implementation YVBannerViewController
@@ -48,7 +50,7 @@
             weakSelf.pageTextField.text = [NSString stringWithFormat:@"%ld",(long)index+1];
         };
         
-        [self setImageListFirst:nil];
+        [self setImageList:nil];
     }
     
     return _bannerView;
@@ -56,7 +58,7 @@
 
 #pragma mark -iCarousel-
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel{
-    return _bannerView.images.count;
+    return [self imagesWithIndex:_imageListIndex].count;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
@@ -68,7 +70,7 @@
         imageView.clipsToBounds = YES;
     }
     
-    id obj = _bannerView.images[index];
+    id obj = [self imagesWithIndex:_imageListIndex][index];
     if ([obj isKindOfClass:[UIImage class]]) {
         imageView.image = obj;
     }
@@ -86,7 +88,7 @@
     switch (option) {
         case iCarouselOptionWrap:
         {
-            if (_bannerView.wrap && _bannerView.images.count-1) {
+            if (_bannerView.wrap && [self imagesWithIndex:_imageListIndex].count-1) {
                 return 1;
             }
             else{
@@ -135,18 +137,32 @@
 }
 
 #pragma mark -Events
-//图片列表1
-- (IBAction)setImageListFirst:(id)sender {
+//图片列表
+- (IBAction)setImageList:(UIButton *)sender {
     [self.view endEditing:YES];
-    NSArray *array =@[[UIImage imageNamed:@"timg-1.jpeg"],@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535622462426&di=51b760c72325eb162f5197149b65ebf9&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2F00%2F00%2F69%2F40%2F1d2b21ed851c406e42d9cc4e091bbb60.jpg",[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535622462426&di=2079a34ed7e0b32f04e98af84b8e7fa8&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2F00%2F00%2F69%2F40%2F9de73293f6a55dbcf52f3f36bfef3dd8.jpg"],[UIImage imageNamed:@"timg-2.jpeg"]];
-    self.bannerView.images = array;
+    _imageListIndex = sender?sender.tag:0;
+    NSArray *array = [self imagesWithIndex:_imageListIndex];
+    [self.bannerView loadWithCount:array.count SetImages:^(UIImageView *imageView, NSInteger index) {
+        id obj = array[index];
+        if ([obj isKindOfClass:[UIImage class]]) {
+            imageView.image = obj;
+        }
+        else if ([obj isKindOfClass:[NSString class]] && [obj hasPrefix:@"http"]){
+            [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:nil];
+        }
+        else if ([obj isKindOfClass:[NSURL class]]){
+            [imageView sd_setImageWithURL:obj placeholderImage:nil];
+        }
+    }];
 }
 
-//图片列表2
-- (IBAction)setImageListSecond:(id)sender {
-    [self.view endEditing:YES];
-    NSArray *array =@[[UIImage imageNamed:@"timg-4.jpeg"],@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535622462425&di=868654d3db54f34b05d2c8e19a161201&imgtype=0&src=http%3A%2F%2Fpic.97uimg.com%2Fback_pic%2F20%2F15%2F11%2F13%2F38dd11cca0de8f1ac670dc82fca4e807.jpg",[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535622462425&di=f278a4bc6332f78d93dd7017b9bc231e&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F02%2F73%2F535c09a85c5deb1b3ffc9033981d55a1.jpg"]];
-    self.bannerView.images = array;
+- (NSArray *)imagesWithIndex:(NSInteger)index{
+    if (index) {
+        return @[[UIImage imageNamed:@"timg-1.jpeg"],@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535622462426&di=51b760c72325eb162f5197149b65ebf9&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2F00%2F00%2F69%2F40%2F1d2b21ed851c406e42d9cc4e091bbb60.jpg",[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535622462426&di=2079a34ed7e0b32f04e98af84b8e7fa8&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2F00%2F00%2F69%2F40%2F9de73293f6a55dbcf52f3f36bfef3dd8.jpg"],[UIImage imageNamed:@"timg-2.jpeg"]];
+    }
+    else{
+        return @[[UIImage imageNamed:@"timg-4.jpeg"],@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535622462425&di=868654d3db54f34b05d2c8e19a161201&imgtype=0&src=http%3A%2F%2Fpic.97uimg.com%2Fback_pic%2F20%2F15%2F11%2F13%2F38dd11cca0de8f1ac670dc82fca4e807.jpg",[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535622462425&di=f278a4bc6332f78d93dd7017b9bc231e&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F02%2F73%2F535c09a85c5deb1b3ffc9033981d55a1.jpg"]];
+    }
 }
 
 //设置指示器类型
@@ -187,7 +203,7 @@
 - (IBAction)jumpToPage:(id)sender {
     [self.view endEditing:YES];
     NSInteger index = [_pageTextField.text integerValue]-1;
-    if (index>=0 && index<_bannerView.images.count) {
+    if (index>=0 && index<[self imagesWithIndex:_imageListIndex].count) {
         if (_bannerView.carousel.dataSource == self) {
             [_bannerView.carousel scrollToItemAtIndex:index animated:YES];
         }

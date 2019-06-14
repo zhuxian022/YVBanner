@@ -28,6 +28,7 @@ typedef enum : NSUInteger {
 
 typedef void(^YVClickBanner)(NSInteger index);
 typedef void(^YVScrollBanner)(NSInteger index);
+typedef void(^YVSetImages)(UIImageView *imageView,NSInteger index);
 
 @interface YVBanner : UIView <iCarouselDataSource,iCarouselDelegate>
 
@@ -88,7 +89,7 @@ typedef void(^YVScrollBanner)(NSInteger index);
 @property (nonatomic ,strong) YVScrollBanner scrollBannerBlock;
 
 #pragma 数据
-//数据
-@property (nonatomic ,strong) NSArray *images;
+//block设置images
+- (void)loadWithCount:(NSInteger)count SetImages:(YVSetImages)setImages;
 
 @end

@@ -8,14 +8,15 @@
 
 #import "YVBanner.h"
 
-#import "UIImageView+WebCache.h"
-
 #define YVBannerHeight self.frame.size.height
 #define YVBannerWidth self.frame.size.width
 
 @interface YVBanner ()
 
 @property (nonatomic ,strong) NSTimer *timer;
+
+@property (nonatomic ,assign) NSInteger totalCount;
+@property (nonatomic ,strong) YVSetImages setImagesBlock;
 
 @end
 
@@ -53,6 +54,27 @@
     _indicatorVerHeight = 0;
 }
 
+//block设置images
+- (void)loadWithCount:(NSInteger)count SetImages:(YVSetImages)setImages{
+    _totalCount = count;
+    _setImagesBlock = setImages;
+    
+    [_carousel reloadData];
+    _currentIndex = 0;
+    [_carousel scrollToItemAtIndex:0 animated:NO];
+    
+    if (count-1) {
+        _carousel.scrollEnabled = YES;
+    }
+    else{
+        _carousel.scrollEnabled = NO;
+    }
+    
+    [self setIndicatorFrame];
+    
+    [self startCountDown];
+}
+
 #pragma mark -Setter-
 //更新frame
 - (void)setFrame:(CGRect)frame{
@@ -71,25 +93,6 @@
     _wrap = wrap;
     
     [_carousel reloadData];
-}
-
-- (void)setImages:(NSArray *)images{
-    _images = images;
-    
-    [_carousel reloadData];
-    _currentIndex = 0;
-    [_carousel scrollToItemAtIndex:0 animated:NO];
-    
-    if (_images.count-1) {
-        _carousel.scrollEnabled = YES;
-    }
-    else{
-        _carousel.scrollEnabled = NO;
-    }
-    
-    [self setIndicatorFrame];
-
-    [self startCountDown];
 }
 
 - (void)setIndicatorType:(YVIndicatorType)indicatorType{
@@ -126,7 +129,7 @@
 }
 
 - (void)setCurrentIndex:(NSInteger)currentIndex{
-    if (currentIndex < _images.count) {
+    if (currentIndex < _totalCount) {
         _currentIndex = currentIndex;
         
         if (_carousel.dataSource == self) {
@@ -185,8 +188,8 @@
 
 //改变指示器位置
 - (void)setIndicatorFrame{
-    _indicatorLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_currentIndex+1,(unsigned long)(_images?_images.count:0)];
-    _pageControl.numberOfPages = _images?_images.count:0;
+    _indicatorLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_currentIndex+1,(unsigned long)(_totalCount)];
+    _pageControl.numberOfPages = _totalCount;
     _pageControl.currentPage = _currentIndex;
     
     switch (_indicatorPosition) {
@@ -198,7 +201,7 @@
             _indicatorLabel.textAlignment = NSTextAlignmentLeft;
             
             //pageControl
-            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_images?_images.count:1];
+            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_totalCount?_totalCount:1];
             _pageControl.frame = CGRectMake(_indicatorHorWidth, _indicatorVerHeight, pageControlSize.width, pageControlSize.height);
         }
             break;
@@ -211,7 +214,7 @@
             _indicatorLabel.textAlignment = NSTextAlignmentCenter;
             
             //pageControl
-            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_images?_images.count:1];
+            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_totalCount?_totalCount:1];
             _pageControl.frame = CGRectMake((YVBannerWidth-pageControlSize.width)/2, _indicatorVerHeight, pageControlSize.width, pageControlSize.height);
         }
             break;
@@ -224,7 +227,7 @@
             _indicatorLabel.textAlignment = NSTextAlignmentRight;
             
             //pageControl
-            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_images?_images.count:1];
+            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_totalCount?_totalCount:1];
             _pageControl.frame = CGRectMake(YVBannerWidth-pageControlSize.width-_indicatorHorWidth, _indicatorVerHeight, pageControlSize.width, pageControlSize.height);
         }
             break;
@@ -237,7 +240,7 @@
             _indicatorLabel.textAlignment = NSTextAlignmentCenter;
             
             //pageControl
-            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_images?_images.count:1];
+            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_totalCount?_totalCount:1];
             _pageControl.frame = CGRectMake((YVBannerWidth-pageControlSize.width)/2, (YVBannerHeight-pageControlSize.height)/2, pageControlSize.width, pageControlSize.height);
         }
             break;
@@ -250,7 +253,7 @@
             _indicatorLabel.textAlignment = NSTextAlignmentLeft;
             
             //pageControl
-            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_images?_images.count:1];
+            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_totalCount?_totalCount:1];
             _pageControl.frame = CGRectMake(_indicatorHorWidth, YVBannerHeight-pageControlSize.height-_indicatorVerHeight, pageControlSize.width, pageControlSize.height);
         }
             break;
@@ -263,7 +266,7 @@
             _indicatorLabel.textAlignment = NSTextAlignmentCenter;
             
             //pageControl
-            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_images?_images.count:1];
+            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_totalCount?_totalCount:1];
             _pageControl.frame = CGRectMake((YVBannerWidth-pageControlSize.width)/2, YVBannerHeight-pageControlSize.height-_indicatorVerHeight, pageControlSize.width, pageControlSize.height);
         }
             break;
@@ -276,7 +279,7 @@
             _indicatorLabel.textAlignment = NSTextAlignmentRight;
             
             //pageControl
-            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_images?_images.count:1];
+            CGSize pageControlSize = [_pageControl sizeForNumberOfPages:_totalCount?_totalCount:1];
             _pageControl.frame = CGRectMake(YVBannerWidth-pageControlSize.width-_indicatorHorWidth, YVBannerHeight-pageControlSize.height-_indicatorVerHeight, pageControlSize.width, pageControlSize.height);
         }
             break;
@@ -307,7 +310,7 @@
 
 #pragma mark -iCarousel-
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel{
-    return _images.count;
+    return _totalCount;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
@@ -317,15 +320,19 @@
         imageView = [[UIImageView alloc]initWithFrame:carousel.bounds];
     }
     
-    id obj = _images[index];
-    if ([obj isKindOfClass:[UIImage class]]) {
-        imageView.image = obj;
-    }
-    else if ([obj isKindOfClass:[NSString class]] && [obj hasPrefix:@"http"]){
-        [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:nil];
-    }
-    else if ([obj isKindOfClass:[NSURL class]]){
-        [imageView sd_setImageWithURL:obj placeholderImage:nil];
+//    id obj = _images[index];
+//    if ([obj isKindOfClass:[UIImage class]]) {
+//        imageView.image = obj;
+//    }
+//    else if ([obj isKindOfClass:[NSString class]] && [obj hasPrefix:@"http"]){
+//        [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:nil];
+//    }
+//    else if ([obj isKindOfClass:[NSURL class]]){
+//        [imageView sd_setImageWithURL:obj placeholderImage:nil];
+//    }
+    
+    if (_setImagesBlock) {
+        _setImagesBlock(imageView,index);
     }
     
     return imageView;
@@ -335,7 +342,7 @@
     switch (option) {
         case iCarouselOptionWrap:
         {
-            if (_wrap && _images.count-1) {
+            if (_wrap && _totalCount-1) {
                 return 1;
             }
             else{
@@ -358,7 +365,7 @@
         _pageControl.currentPage = _currentIndex;
     }
     if (_indicatorLabel) {
-        _indicatorLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_currentIndex+1,(unsigned long)(_images?_images.count:0)]
+        _indicatorLabel.text = [NSString stringWithFormat:@"%ld/%lu",(long)_currentIndex+1,(unsigned long)(_totalCount)]
         ;
     }
     if (_scrollBannerBlock) {
