@@ -13,6 +13,7 @@
 		9A7BDD792136CA3400716F3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDD782136CA3400716F3B /* main.m */; };
 		9A7BDD832136CA3400716F3B /* YVBannerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDD822136CA3400716F3B /* YVBannerDemoTests.m */; };
 		9A7BDD8E2136CA3400716F3B /* YVBannerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDD8D2136CA3400716F3B /* YVBannerDemoUITests.m */; };
+		9A7BDDA92136E8B400716F3B /* YVBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDA82136E8B400716F3B /* YVBanner.m */; };
 		9A7BDDC82136EA5800716F3B /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDAD2136EA5800716F3B /* SDWebImageManager.m */; };
 		9A7BDDC92136EA5800716F3B /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDAE2136EA5800716F3B /* SDWebImageDecoder.m */; };
 		9A7BDDCA2136EA5800716F3B /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDB02136EA5800716F3B /* UIImageView+HighlightedWebCache.m */; };
@@ -27,7 +28,6 @@
 		9A7BDDD32136EA5800716F3B /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDBF2136EA5800716F3B /* UIImageView+WebCache.m */; };
 		9A7BDDD42136EA5800716F3B /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDC22136EA5800716F3B /* UIView+WebCacheOperation.m */; };
 		9A7BDDD52136EA5800716F3B /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A7BDDC62136EA5800716F3B /* UIButton+WebCache.m */; };
-		9A8222CD22B3F4120096D100 /* YVBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8222CC22B3F4120096D100 /* YVBanner.m */; };
 		E276AE6B2137E2D7002041E2 /* YVOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E276AE692137E2D7002041E2 /* YVOptionsViewController.m */; };
 		E276AE6C2137E2D7002041E2 /* YVOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E276AE6A2137E2D7002041E2 /* YVOptionsViewController.xib */; };
 		E276AE722137F805002041E2 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = E276AE702137F805002041E2 /* iCarousel.m */; };
@@ -70,6 +70,8 @@
 		9A7BDD892136CA3400716F3B /* YVBannerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YVBannerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7BDD8D2136CA3400716F3B /* YVBannerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YVBannerDemoUITests.m; sourceTree = "<group>"; };
 		9A7BDD8F2136CA3400716F3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A7BDDA72136E8B400716F3B /* YVBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YVBanner.h; sourceTree = "<group>"; };
+		9A7BDDA82136E8B400716F3B /* YVBanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YVBanner.m; sourceTree = "<group>"; };
 		9A7BDDAB2136EA5800716F3B /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		9A7BDDAC2136EA5800716F3B /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
 		9A7BDDAD2136EA5800716F3B /* SDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManager.m; sourceTree = "<group>"; };
@@ -99,8 +101,6 @@
 		9A7BDDC52136EA5800716F3B /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
 		9A7BDDC62136EA5800716F3B /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		9A7BDDC72136EA5800716F3B /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
-		9A8222CB22B3F4120096D100 /* YVBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YVBanner.h; sourceTree = "<group>"; };
-		9A8222CC22B3F4120096D100 /* YVBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YVBanner.m; sourceTree = "<group>"; };
 		E276AE682137E2D7002041E2 /* YVOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YVOptionsViewController.h; sourceTree = "<group>"; };
 		E276AE692137E2D7002041E2 /* YVOptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YVOptionsViewController.m; sourceTree = "<group>"; };
 		E276AE6A2137E2D7002041E2 /* YVOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YVOptionsViewController.xib; sourceTree = "<group>"; };
@@ -204,8 +204,8 @@
 		9A7BDD9B2136CA7500716F3B /* YVBanner */ = {
 			isa = PBXGroup;
 			children = (
-				9A8222CA22B3F4120096D100 /* YVBanner */,
 				9A7BDDAA2136EA5800716F3B /* SDWebImage */,
+				9A7BDDA62136E8A700716F3B /* YVBanner */,
 				9A7BDDA22136CB6C00716F3B /* iCarousel */,
 			);
 			path = YVBanner;
@@ -218,6 +218,15 @@
 				E276AE702137F805002041E2 /* iCarousel.m */,
 			);
 			path = iCarousel;
+			sourceTree = "<group>";
+		};
+		9A7BDDA62136E8A700716F3B /* YVBanner */ = {
+			isa = PBXGroup;
+			children = (
+				9A7BDDA72136E8B400716F3B /* YVBanner.h */,
+				9A7BDDA82136E8B400716F3B /* YVBanner.m */,
+			);
+			path = YVBanner;
 			sourceTree = "<group>";
 		};
 		9A7BDDAA2136EA5800716F3B /* SDWebImage */ = {
@@ -254,16 +263,6 @@
 				9A7BDDC72136EA5800716F3B /* UIImage+GIF.h */,
 			);
 			path = SDWebImage;
-			sourceTree = "<group>";
-		};
-		9A8222CA22B3F4120096D100 /* YVBanner */ = {
-			isa = PBXGroup;
-			children = (
-				9A8222CB22B3F4120096D100 /* YVBanner.h */,
-				9A8222CC22B3F4120096D100 /* YVBanner.m */,
-			);
-			name = YVBanner;
-			path = ../../../YVBanner;
 			sourceTree = "<group>";
 		};
 		E2FBE2B42137CDA600ADD28F /* Images */ = {
@@ -426,9 +425,9 @@
 				9A7BDDC82136EA5800716F3B /* SDWebImageManager.m in Sources */,
 				9A7BDDD22136EA5800716F3B /* NSData+ImageContentType.m in Sources */,
 				9A7BDDD52136EA5800716F3B /* UIButton+WebCache.m in Sources */,
-				9A8222CD22B3F4120096D100 /* YVBanner.m in Sources */,
 				9A7BDD6B2136CA3300716F3B /* AppDelegate.m in Sources */,
 				9A7BDDCC2136EA5800716F3B /* UIImage+GIF.m in Sources */,
+				9A7BDDA92136E8B400716F3B /* YVBanner.m in Sources */,
 				9A7BDDCD2136EA5800716F3B /* UIImage+MultiFormat.m in Sources */,
 				9A7BDDD42136EA5800716F3B /* UIView+WebCacheOperation.m in Sources */,
 				9A7BDDD02136EA5800716F3B /* SDImageCache.m in Sources */,
