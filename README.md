@@ -20,6 +20,7 @@ pod 'YVBanner', '~> 1.5.2'
 * #### 2019.06.14 remove dependent on SDWebImage v1.4
 * #### 2019.06.23 customImageView,add SepeWidth v1.5
 * #### 2019.06.23 bug fix v1.5.1
+* #### 2019.06.23 support vertical v1.5.2
 
 ## How To Use
 #### import "YVBanner.h"
