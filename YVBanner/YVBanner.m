@@ -374,7 +374,8 @@
         return _customAnimationBlock(carousel,offset,transform);
     }
     else{
-        return CATransform3DTranslate(transform, offset * (CGRectGetWidth(carousel.frame)+_sepeWidth), 0, 0);
+        UIView *view = [carousel.visibleItemViews firstObject];
+        return CATransform3DTranslate(transform, offset * (CGRectGetWidth(view.frame)+_sepeWidth), 0, 0);
     }
 }
 
