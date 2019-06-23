@@ -294,12 +294,22 @@
 - (void)startCountDown{
     [_timer invalidate];
     if (_timeInverval) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:_timeInverval/2.0 target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:NO];
+        if (_timeInverval < 0) {
+            _timer = [NSTimer scheduledTimerWithTimeInterval:fabs(_timeInverval)/2.0 target:self selector:@selector(scrollToLastPage) userInfo:nil repeats:NO];
+        }
+        else{
+            _timer = [NSTimer scheduledTimerWithTimeInterval:_timeInverval/2.0 target:self selector:@selector(scrollToNextPage) userInfo:nil repeats:NO];
+        }
     }
 }
 
 - (void)scrollToNextPage{
     [_carousel scrollToItemAtIndex:_currentIndex++ animated:YES];
+    [self startCountDown];
+}
+
+- (void)scrollToLastPage{
+    [_carousel scrollToItemAtIndex:_currentIndex-- animated:YES];
     [self startCountDown];
 }
 

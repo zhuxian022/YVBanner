@@ -7,7 +7,7 @@
 ## Installation
 #### 1.cocoapod 
 ```Object-C
-pod 'YVBanner', '~> 1.5.2'
+pod 'YVBanner', '~> 1.5.3'
 ```
 
 #### 2.add Files to your project
@@ -21,6 +21,7 @@ pod 'YVBanner', '~> 1.5.2'
 * #### 2019.06.23 customImageView,add SepeWidth v1.5
 * #### 2019.06.23 bug fix v1.5.1
 * #### 2019.06.23 support vertical v1.5.2
+* #### 2019.06.23 autoScroll to back v1.5.2
 
 ## How To Use
 #### import "YVBanner.h"
@@ -70,6 +71,7 @@ _bannerView.currentIndex = 3;
 
 #### set AutoScrollTime
 ```Object-C
+//if timeInverval < 0,scroll to lastPage
 _bannerView.timeInverval = 2.0f;
 ```
 

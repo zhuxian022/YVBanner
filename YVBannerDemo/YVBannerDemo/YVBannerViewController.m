@@ -41,8 +41,8 @@
 - (YVBanner *)bannerView{
     if (!_bannerView) {
         _bannerView = [[YVBanner alloc]initWithFrame:CGRectMake(0, Navigation_Height, IPHONE_WIDTH, 250-Navigation_Height)];
-    
-        _bannerView.sepeWidth = 20;
+        
+//        _bannerView.sepeWidth = 20;
         
         WS(weakSelf);
         _bannerView.clickBannerBlock = ^(NSInteger index) {
