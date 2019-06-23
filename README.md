@@ -18,7 +18,7 @@ pod 'YVBanner', '~> 1.5'
 * #### 2018.08.31 add AutoScroll v1.2
 * #### 2018.09.03 support custom animation v1.3
 * #### 2019.06.14 remove dependent on SDWebImage v1.4
-* #### 2019.06.23 customImageView,add SepeWidth
+* #### 2019.06.23 customImageView,add SepeWidth v1.5
 
 ## How To Use
 #### import "YVBanner.h"
