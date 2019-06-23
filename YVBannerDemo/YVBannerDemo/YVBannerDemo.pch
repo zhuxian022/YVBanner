@@ -9,12 +9,15 @@
 #ifndef YVBannerDemo_pch
 #define YVBannerDemo_pch
 
-#define Navigation_Height (isDeviceIphoneX?88:64)
-#define TabBar_Height (isDeviceIphoneX?83:49)
-#define TabBarBottom_Height (isDeviceIphoneX?34:0)
-#define Status_Height (isDeviceIphoneX?44:20)
+#define Navigation_Height ((isDeviceIphoneX||isDeviceIphoneXr||isDeviceIphoneXsMax)?88:64)
+#define Tabbar_Height ((isDeviceIphoneX||isDeviceIphoneXr||isDeviceIphoneXsMax)?83:49)
+
+#define TabBarBottom_Height ((isDeviceIphoneX||isDeviceIphoneXr||isDeviceIphoneXsMax)?34:0)
+#define Status_Height ((isDeviceIphoneX||isDeviceIphoneXr||isDeviceIphoneXsMax)?44:20)
 
 #define isDeviceIphoneX CGSizeEqualToSize([UIScreen mainScreen].currentMode.size, CGSizeMake(1125, 2436))
+#define isDeviceIphoneXr CGSizeEqualToSize([UIScreen mainScreen].currentMode.size, CGSizeMake(828, 1792))
+#define isDeviceIphoneXsMax CGSizeEqualToSize([UIScreen mainScreen].currentMode.size, CGSizeMake(1242, 2688))
 
 #define IPHONE_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define IPHONE_HEIGHT ([UIScreen mainScreen].bounds.size.height)

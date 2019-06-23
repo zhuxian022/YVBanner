@@ -52,6 +52,7 @@
     
     _indicatorHorWidth = 20;
     _indicatorVerHeight = 0;
+    _sepeWidth = 0;
 }
 
 //block设置images
@@ -147,7 +148,7 @@
         _carousel.dataSource = self;
         _carousel.delegate = self;
         
-        _carousel.type = iCarouselTypeLinear;
+        _carousel.type = iCarouselTypeCustom;
         _carousel.vertical = NO;
         _carousel.pagingEnabled = YES;
         _carousel.bounceDistance = 0.001f;
@@ -314,28 +315,11 @@
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
-    UIImageView *imageView = (UIImageView *)view;
-    
-    if (!imageView) {
-        imageView = [[UIImageView alloc]initWithFrame:carousel.bounds];
-    }
-    
-//    id obj = _images[index];
-//    if ([obj isKindOfClass:[UIImage class]]) {
-//        imageView.image = obj;
-//    }
-//    else if ([obj isKindOfClass:[NSString class]] && [obj hasPrefix:@"http"]){
-//        [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:nil];
-//    }
-//    else if ([obj isKindOfClass:[NSURL class]]){
-//        [imageView sd_setImageWithURL:obj placeholderImage:nil];
-//    }
-    
     if (_setImagesBlock) {
-        _setImagesBlock(imageView,index);
+        return _setImagesBlock(carousel,view,index);
     }
     
-    return imageView;
+    return view;
 }
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
@@ -348,6 +332,12 @@
             else{
                 return 0;
             }
+        }
+            break;
+            
+        case iCarouselOptionVisibleItems:
+        {
+            return 3;
         }
             break;
 
@@ -376,6 +366,15 @@
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
     if (_clickBannerBlock) {
         _clickBannerBlock(index);
+    }
+}
+
+- (CATransform3D)carousel:(iCarousel *)carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform{
+    if (_customAnimationBlock) {
+        return _customAnimationBlock(carousel,offset,transform);
+    }
+    else{
+        return CATransform3DTranslate(transform, offset * (CGRectGetWidth(carousel.frame)+_sepeWidth), 0, 0);
     }
 }
 

@@ -7,7 +7,7 @@
 ## Installation
 #### 1.cocoapod 
 ```Object-C
-pod 'YVBanner', '~> 1.4'
+pod 'YVBanner', '~> 1.5'
 ```
 
 #### 2.add Files to your project
@@ -18,6 +18,7 @@ pod 'YVBanner', '~> 1.4'
 * #### 2018.08.31 add AutoScroll v1.2
 * #### 2018.09.03 support custom animation v1.3
 * #### 2019.06.14 remove dependent on SDWebImage v1.4
+* #### 2019.06.23 customImageView,add SepeWidth
 
 ## How To Use
 #### import "YVBanner.h"
@@ -29,7 +30,15 @@ _bannerView = [[YVBanner alloc]initWithFrame:CGRectMake(0, Navigation_Height, IP
 #### set images
 ```Object-C
 NSArray *array =@[[UIImage imageNamed:@"timg-1.jpeg"],@"https://timgsa.baidu.com/timg?image&src=http%bb60.jpg",[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image2f3f36bfef3dd8.jpg"],[UIImage imageNamed:@"timg-2.jpeg"]];
-[_bannerView loadWithCount:array.count SetImages:^(UIImageView *imageView, NSInteger index) {
+[self.bannerView loadWithCount:array.count SetImages:^(iCarousel *carousel,UIView *view, NSInteger index) {
+UIImageView *imageView = (UIImageView *)view;
+
+if (!imageView) {
+imageView = [[UIImageView alloc]initWithFrame:carousel.bounds];
+imageView.contentMode = UIViewContentModeScaleAspectFill;
+imageView.clipsToBounds = YES;
+}
+
 id obj = array[index];
 if ([obj isKindOfClass:[UIImage class]]) {
 imageView.image = obj;
@@ -40,6 +49,8 @@ else if ([obj isKindOfClass:[NSString class]] && [obj hasPrefix:@"http"]){
 else if ([obj isKindOfClass:[NSURL class]]){
 [imageView sd_setImageWithURL:obj placeholderImage:nil];
 }
+
+return imageView;
 }];
 ```
 
@@ -73,10 +84,11 @@ NSLog(@"scrollToIndex:%ld",(long)index);
 ## Custom Animation
 #### 1.set bannerView's carousel dataSource & delegate
 ```Object-C
-_bannerView.carousel.dataSource = self;
-_bannerView.carousel.delegate = self;
-_bannerView.carousel.type = iCarouselTypeCustom;
+//自定义动画（Mac版QQ音乐样式）
+_bannerView.customAnimationBlock = ^CATransform3D(iCarousel *carousel, CGFloat offset, CATransform3D transform) {
+    //do customAnimations
+    //[Please check iCarousel](https://github.com/nicklockwood/iCarousel) 
+}
 ```
-#### 2.implement bannerView's carousel dataSource & delegate 
-[Please check iCarousel](https://github.com/nicklockwood/iCarousel) 
+
 

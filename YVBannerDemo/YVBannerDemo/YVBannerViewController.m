@@ -12,13 +12,14 @@
 
 #import "UIImageView+WebCache.h"
 
-@interface YVBannerViewController ()<iCarouselDataSource,iCarouselDelegate>
+@interface YVBannerViewController ()
 
 @property (nonatomic ,strong) YVBanner *bannerView;
 @property (weak, nonatomic) IBOutlet UITextField *pageTextField;
 @property (strong, nonatomic) IBOutlet UITextField *timeTF;
 
 @property (nonatomic ,assign) NSInteger imageListIndex;
+@property (nonatomic ,assign) BOOL isCustomAnimation;
 
 @end
 
@@ -41,6 +42,8 @@
     if (!_bannerView) {
         _bannerView = [[YVBanner alloc]initWithFrame:CGRectMake(0, Navigation_Height, IPHONE_WIDTH, 250-Navigation_Height)];
         
+        _bannerView.sepeWidth = 20;
+        
         WS(weakSelf);
         _bannerView.clickBannerBlock = ^(NSInteger index) {
             [weakSelf.view endEditing:YES];
@@ -56,93 +59,28 @@
     return _bannerView;
 }
 
-#pragma mark -iCarousel-
-- (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel{
-    return [self imagesWithIndex:_imageListIndex].count;
-}
-
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
-    UIImageView *imageView = (UIImageView *)view;
-    
-    if (!imageView) {
-        imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(carousel.frame)/6*4, CGRectGetHeight(carousel.frame))];
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.clipsToBounds = YES;
-    }
-    
-    id obj = [self imagesWithIndex:_imageListIndex][index];
-    if ([obj isKindOfClass:[UIImage class]]) {
-        imageView.image = obj;
-    }
-    else if ([obj isKindOfClass:[NSString class]] && [obj hasPrefix:@"http"]){
-        [imageView sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:nil];
-    }
-    else if ([obj isKindOfClass:[NSURL class]]){
-        [imageView sd_setImageWithURL:obj placeholderImage:nil];
-    }
-    
-    return imageView;
-}
-
-- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value{
-    switch (option) {
-        case iCarouselOptionWrap:
-        {
-            if (_bannerView.wrap && [self imagesWithIndex:_imageListIndex].count-1) {
-                return 1;
-            }
-            else{
-                return 0;
-            }
-        }
-            break;
-            
-        case iCarouselOptionVisibleItems:
-        {
-            return 3;
-        }
-            break;
-            
-        default:
-        {
-            return value;
-        }
-            break;
-    }
-}
-
-- (void)carouselDidScroll:(iCarousel *)carousel{
-    _bannerView.currentIndex = carousel.currentItemIndex;
-}
-
-- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index{
-    
-}
-
-- (CATransform3D)carousel:(iCarousel *)carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform{
-    CGSize itemSize = CGSizeMake(CGRectGetWidth(carousel.frame)/6*4, CGRectGetHeight(carousel.frame));
-    static CGFloat max_sacle = 1.0f;
-    static CGFloat min_scale = 0.7f;
-    if (offset <= 1 && offset >= -1) {
-        float tempScale = offset < 0 ? 1+offset : 1-offset;
-        float slope = (max_sacle - min_scale) / 1;
-        
-        CGFloat scale = min_scale + slope*tempScale;
-        transform = CATransform3DScale(transform, scale, scale, 1);
-    }else{
-        transform = CATransform3DScale(transform, min_scale, min_scale, 1);
-    }
-    
-    return CATransform3DTranslate(transform, offset * itemSize.width, 0.0, offset<0?offset:-offset);
-}
-
 #pragma mark -Events
 //图片列表
 - (IBAction)setImageList:(UIButton *)sender {
     [self.view endEditing:YES];
+    
     _imageListIndex = sender?sender.tag:0;
     NSArray *array = [self imagesWithIndex:_imageListIndex];
-    [self.bannerView loadWithCount:array.count SetImages:^(UIImageView *imageView, NSInteger index) {
+    
+    [self.bannerView loadWithCount:array.count SetImages:^(iCarousel *carousel,UIView *view, NSInteger index) {
+        UIImageView *imageView = (UIImageView *)view;
+        
+        if (!imageView) {
+            if (self.isCustomAnimation) {
+                imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(carousel.frame)/6*4, CGRectGetHeight(carousel.frame))];
+            }
+            else{
+                imageView = [[UIImageView alloc]initWithFrame:carousel.bounds];
+            }
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.clipsToBounds = YES;
+        }
+        
         id obj = array[index];
         if ([obj isKindOfClass:[UIImage class]]) {
             imageView.image = obj;
@@ -153,6 +91,8 @@
         else if ([obj isKindOfClass:[NSURL class]]){
             [imageView sd_setImageWithURL:obj placeholderImage:nil];
         }
+        
+        return imageView;
     }];
 }
 
@@ -230,16 +170,32 @@
 //切换滚动样式
 - (IBAction)changeScrollType:(UIButton *)sender {
     sender.selected = !sender.selected;
+    _isCustomAnimation = sender.selected;
     if (sender.selected) {
-        _bannerView.carousel.dataSource = self;
-        _bannerView.carousel.delegate = self;
-        _bannerView.carousel.type = iCarouselTypeCustom;
+        //自定义动画（Mac版QQ音乐样式）
+        _bannerView.customAnimationBlock = ^CATransform3D(iCarousel *carousel, CGFloat offset, CATransform3D transform) {
+            CGSize itemSize = CGSizeMake(CGRectGetWidth(carousel.frame)/6*4, CGRectGetHeight(carousel.frame));
+            static CGFloat max_sacle = 1.0f;
+            static CGFloat min_scale = 0.7f;
+            if (offset <= 1 && offset >= -1) {
+                float tempScale = offset < 0 ? 1+offset : 1-offset;
+                float slope = (max_sacle - min_scale) / 1;
+                
+                CGFloat scale = min_scale + slope*tempScale;
+                transform = CATransform3DScale(transform, scale, scale, 1);
+            }else{
+                transform = CATransform3DScale(transform, min_scale, min_scale, 1);
+            }
+            
+            return CATransform3DTranslate(transform, offset * itemSize.width, 0.0, offset<0?offset:-offset);
+        };
     }
     else{
-        _bannerView.carousel.dataSource = _bannerView;
-        _bannerView.carousel.delegate = _bannerView;
-        _bannerView.carousel.type = iCarouselTypeLinear;
+        _bannerView.customAnimationBlock = nil;
     }
+    
+    sender.tag = _imageListIndex;
+    [self setImageList:sender];
 }
 
 @end

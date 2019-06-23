@@ -28,7 +28,8 @@ typedef enum : NSUInteger {
 
 typedef void(^YVClickBanner)(NSInteger index);
 typedef void(^YVScrollBanner)(NSInteger index);
-typedef void(^YVSetImages)(UIImageView *imageView,NSInteger index);
+typedef CATransform3D(^CustomAnimation)(iCarousel *carousel,CGFloat offset,CATransform3D baseTransform);
+typedef UIView *(^YVSetImages)(iCarousel *carousel,UIView *view,NSInteger index);
 
 @interface YVBanner : UIView <iCarouselDataSource,iCarouselDelegate>
 
@@ -69,6 +70,11 @@ typedef void(^YVSetImages)(UIImageView *imageView,NSInteger index);
 @property (nonatomic ,assign) CGFloat indicatorHorWidth;
 
 /*
+ **图片与图片的间距
+ */
+@property (nonatomic ,assign) CGFloat sepeWidth;
+
+/*
  **是否循环,默认YES
  */
 @property (nonatomic ,assign) BOOL wrap;
@@ -87,6 +93,11 @@ typedef void(^YVSetImages)(UIImageView *imageView,NSInteger index);
  **滚动block
  */
 @property (nonatomic ,strong) YVScrollBanner scrollBannerBlock;
+
+/*
+ **自定义动画
+ */
+@property (nonatomic ,strong) CustomAnimation customAnimationBlock;
 
 #pragma 数据
 //block设置images
