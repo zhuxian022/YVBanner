@@ -41,7 +41,7 @@
 - (YVBanner *)bannerView{
     if (!_bannerView) {
         _bannerView = [[YVBanner alloc]initWithFrame:CGRectMake(0, Navigation_Height, IPHONE_WIDTH, 250-Navigation_Height)];
-        
+    
         _bannerView.sepeWidth = 20;
         
         WS(weakSelf);
@@ -144,12 +144,7 @@
     [self.view endEditing:YES];
     NSInteger index = [_pageTextField.text integerValue]-1;
     if (index>=0 && index<[self imagesWithIndex:_imageListIndex].count) {
-        if (_bannerView.carousel.dataSource == self) {
-            [_bannerView.carousel scrollToItemAtIndex:index animated:YES];
-        }
-        else{
-            _bannerView.currentIndex = index;
-        }
+        _bannerView.currentIndex = index;
     }
 }
 

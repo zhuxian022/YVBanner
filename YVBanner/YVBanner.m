@@ -375,7 +375,12 @@
     }
     else{
         UIView *view = [carousel.visibleItemViews firstObject];
-        return CATransform3DTranslate(transform, offset * (CGRectGetWidth(view.frame)+_sepeWidth), 0, 0);
+        if (carousel.isVertical) {
+            return CATransform3DTranslate(transform, 0, offset * (CGRectGetHeight(view.frame)+_sepeWidth), 0);
+        }
+        else{
+            return CATransform3DTranslate(transform, offset * (CGRectGetWidth(view.frame)+_sepeWidth), 0, 0);
+        }
     }
 }
 

@@ -7,7 +7,7 @@
 ## Installation
 #### 1.cocoapod 
 ```Object-C
-pod 'YVBanner', '~> 1.5.1'
+pod 'YVBanner', '~> 1.5.2'
 ```
 
 #### 2.add Files to your project
